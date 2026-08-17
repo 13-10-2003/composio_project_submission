@@ -1,0 +1,3 @@
+# Core runtime
+python>=3.10
+# Add your chosen LLM/web-search SDKs here when running the refresh agent.

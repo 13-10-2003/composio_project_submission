@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Composio — 100-App Agentic Integration Research</title>
+<style>
+:root{--bg:#0b0d12;--panel:#11151d;--panel2:#171c25;--text:#eef2f7;--muted:#9ca7b5;--line:#27303c;--accent:#8b5cf6;--good:#34d399;--warn:#fbbf24;--bad:#fb7185;}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0b0d12,#0e1219 45%,#0b0d12);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1400px;margin:auto;padding:36px 28px 70px} .eyebrow{color:#a78bfa;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+h1{font-size:48px;line-height:1.05;margin:10px 0 16px;max-width:900px} h2{font-size:24px;margin:0 0 16px} h3{margin:0 0 8px} p{color:var(--muted)}
+.hero{padding:34px 0 26px;display:grid;grid-template-columns:1.35fr .65fr;gap:28px;align-items:end}
+.hero-note{background:linear-gradient(135deg,#171322,#121823);border:1px solid #33254d;border-radius:18px;padding:22px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
+.card{background:rgba(17,21,29,.92);border:1px solid var(--line);border-radius:16px;padding:18px}
+.num{font-size:30px;font-weight:800} .label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+section{margin-top:32px} .panel{background:rgba(17,21,29,.9);border:1px solid var(--line);border-radius:18px;padding:22px}
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .finding{background:var(--panel2);border-radius:14px;padding:18px;border:1px solid var(--line)}
+.finding strong{display:block;font-size:16px;margin-bottom:5px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px} .bar{margin:11px 0} .barline{height:9px;background:#242b35;border-radius:10px;overflow:hidden} .barfill{height:100%;background:linear-gradient(90deg,#8b5cf6,#38bdf8);border-radius:10px} .barhead{display:flex;justify-content:space-between;color:#d7dde5;font-size:13px}
+.pipeline{display:flex;gap:8px;align-items:stretch;overflow:auto;padding-bottom:4px} .step{min-width:150px;background:#171c25;border:1px solid var(--line);border-radius:13px;padding:14px} .arrow{align-self:center;color:#7f8a98;font-size:22px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px} input,select{background:#0e131a;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px} table{border-collapse:collapse;width:100%;min-width:1250px} th,td{padding:11px 12px;border-bottom:1px solid #202733;text-align:left;vertical-align:top} th{position:sticky;top:0;background:#151a22;color:#cbd3df;font-size:11px;text-transform:uppercase;letter-spacing:.06em} td{color:#c5ceda;font-size:12px} td a{color:#a78bfa;text-decoration:none}
+.badge{padding:4px 8px;border-radius:999px;font-weight:700;font-size:11px} .high{background:#12382d;color:#6ee7b7} .medium{background:#3c3212;color:#fcd34d} .low{background:#3e1b25;color:#fda4af} .unknown{background:#252a33;color:#b8c1cc}
+.audit{display:grid;grid-template-columns:1fr 1fr;gap:14px} .auditbox{padding:18px;background:#171c25;border:1px solid var(--line);border-radius:14px}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:#7f8a98;font-size:12px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.findings,.charts,.audit{grid-template-columns:1fr}h1{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+<div>
+<div class="eyebrow">AI Product Ops · Composio Take-home</div>
+<h1>100-app research, built as an agentic integration-readiness pipeline.</h1>
+<p>The objective is not to collect 100 rows. It is to determine where an app is technically buildable as an AI-agent toolkit, where credential access becomes the real bottleneck, and how reliably an automated research workflow can answer those questions.</p>
+</div>
+<div class="hero-note"><b>Decision lens</b><p style="margin-bottom:0">API quality × credential accessibility → Build now / Investigate / Outreach / Deprioritize.</p></div>
+</div>
+
+<div class="grid">
+<div class="card"><div class="num">100</div><div class="label">Applications</div></div>
+<div class="card"><div class="num">10</div><div class="label">Categories</div></div>
+<div class="card"><div class="num">65</div><div class="label">High buildability</div></div>
+<div class="card"><div class="num">11</div><div class="label">Clearly gated / approval</div></div>
+</div>
+
+<section><h2>Executive findings</h2><div class="findings">
+<div class="finding"><strong>Credential access is often the operational bottleneck.</strong><span>Many products expose capable APIs, but production access, admin approval, app review or enterprise licensing can still determine whether a toolkit is practical.</span></div>
+<div class="finding"><strong>Developer platforms are the clearest integration pool.</strong><span>GitHub, Cloudflare, Vercel, Sentry, Datadog and similar platforms generally expose documented APIs and self-serve credentials.</span></div>
+<div class="finding"><strong>MCP changes the starting point, not the access model.</strong><span>An official MCP can reduce integration work, but authorization, scopes and commercial access still need to be solved.</span></div>
+</div></section>
+
+<section><h2>Dataset signals</h2><div class="charts">
+<div class="panel"><h3>Buildability</h3>
+<div class="bar"><div class="barhead"><span>High</span><span>65</span></div><div class="barline"><div class="barfill" style="width:65%;"></div></div></div><div class="bar"><div class="barhead"><span>Medium</span><span>29</span></div><div class="barline"><div class="barfill" style="width:29%;"></div></div></div><div class="bar"><div class="barhead"><span>Low</span><span>6</span></div><div class="barline"><div class="barfill" style="width:6%;"></div></div></div>
+</div>
+<div class="panel"><h3>Credential access</h3>
+<div class="bar"><div class="barhead"><span>Self-serve</span><span>51</span></div><div class="barline"><div class="barfill" style="width:51%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve with restrictions</span><span>9</span></div><div class="barline"><div class="barfill" style="width:9%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve trial</span><span>9</span></div><div class="barline"><div class="barfill" style="width:9%;"></div></div></div><div class="bar"><div class="barhead"><span>Paid/admin approval</span><span>7</span></div><div class="barline"><div class="barfill" style="width:7%;"></div></div></div><div class="bar"><div class="barhead"><span>Admin/partner access</span><span>3</span></div><div class="barline"><div class="barfill" style="width:3%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve/paid</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve paid/trial</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Paid</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve paid</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Contact sales</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Contact sales/admin</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Admin approval</span><span>2</span></div><div class="barline"><div class="barfill" style="width:2%;"></div></div></div><div class="bar"><div class="barhead"><span>Admin approval/business verification</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Admin approval/app review</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Admin approval/partner-like</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve sandbox; production approval</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Enterprise/admin</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Partner/request access</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div><div class="bar"><div class="barhead"><span>Self-serve/enterprise</span><span>1</span></div><div class="barline"><div class="barfill" style="width:1%;"></div></div></div>
+</div>
+</div></section>
+
+<section><h2>How the research agent works</h2><div class="panel"><div class="pipeline">
+<div class="step"><b>1 · Input</b><br><span>100-app seed list</span></div><div class="arrow">→</div>
+<div class="step"><b>2 · Discovery</b><br><span>Find official auth/API/access/MCP docs</span></div><div class="arrow">→</div>
+<div class="step"><b>3 · Extraction</b><br><span>Structured fields + evidence URLs</span></div><div class="arrow">→</div>
+<div class="step"><b>4 · Validation</b><br><span>Evidence must support the claim</span></div><div class="arrow">→</div>
+<div class="step"><b>5 · Confidence</b><br><span>High / Medium / Low / Unknown</span></div><div class="arrow">→</div>
+<div class="step"><b>6 · Human review</b><br><span>Sample difficult/gated cases</span></div>
+</div><p><b>Human-in-the-loop:</b> the agent handles discovery and structured extraction; humans are most valuable for ambiguous access gates, conflicting documentation, MCP verification and sampled accuracy audits.</p></div></section>
+
+<section><h2>Verification</h2><div class="audit">
+<div class="auditbox"><div class="num">12</div><div class="label">Applications independently checked</div><p>Checks span CRM, support, communications, ecommerce, developer, finance and AI/media examples.</p></div>
+<div class="auditbox"><b>What was checked</b><p>Authentication, API surface, access constraints and MCP claims were cross-checked against official documentation for the audited sample. The full 100-row snapshot should be treated as a research baseline until every row is manually audited.</p></div>
+</div>
+</section>
+
+<section><h2>100-app research matrix</h2>
+<div class="controls">
+<input id="q" placeholder="Search app, blocker, auth…" oninput="filterRows()">
+<select id="cat" onchange="filterRows()"><option value="">All categories</option><option>AI/Research/Media</option><option>CRM/Sales</option><option>Communications/Messaging</option><option>Data/SEO/Scraping</option><option>Developer/Infra/Data</option><option>Ecommerce</option><option>Finance/Fintech</option><option>Marketing/Ads/Email/Social</option><option>Productivity/Project Mgmt</option><option>Support/Helpdesk</option></select>
+<select id="build" onchange="filterRows()"><option value="">All buildability</option><option>High</option><option>Medium</option><option>Low</option></select>
+</div>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>App</th><th>Category</th><th>Auth</th><th>Access</th><th>API</th><th>MCP</th><th>Buildability</th><th>Main blocker</th><th>Evidence</th></tr></thead><tbody id="rows"><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>1</td><td><b>Salesforce</b></td><td>CRM/Sales</td>
+<td>OAuth2</td><td>Self-serve</td><td>REST + GraphQL · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>OAuth app/org setup</td><td><a href="https://salesforce.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>2</td><td><b>HubSpot</b></td><td>CRM/Sales</td>
+<td>OAuth2; API key/private app token</td><td>Self-serve</td><td>REST + GraphQL · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>App scopes and OAuth review for public apps</td><td><a href="https://hubspot.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>3</td><td><b>Pipedrive</b></td><td>CRM/Sales</td>
+<td>OAuth2; API token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>OAuth app registration</td><td><a href="https://developers.pipedrive.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>4</td><td><b>Attio</b></td><td>CRM/Sales</td>
+<td>OAuth2; API key</td><td>Self-serve</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Workspace scopes</td><td><a href="https://docs.attio.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>5</td><td><b>Twenty</b></td><td>CRM/Sales</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>OAuth/app configuration</td><td><a href="https://twenty.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>6</td><td><b>Podio</b></td><td>CRM/Sales</td>
+<td>OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>App registration</td><td><a href="https://developers.podio.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="Medium" data-access="Self-serve with restrictions">
+<td>7</td><td><b>Zoho CRM</b></td><td>CRM/Sales</td>
+<td>OAuth2</td><td>Self-serve with restrictions</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Organization-specific grant/token flow</td><td><a href="https://www.zoho.com/crm/developer" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>8</td><td><b>Close</b></td><td>CRM/Sales</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official</td><td><span class="badge high">High</span></td>
+<td>Credential/scopes</td><td><a href="https://developer.close.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="High" data-access="Self-serve">
+<td>9</td><td><b>Copper</b></td><td>CRM/Sales</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>HMAC signing for API-key requests</td><td><a href="https://developer.copper.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="CRM/Sales" data-build="Medium" data-access="Paid/admin approval">
+<td>10</td><td><b>DealCloud</b></td><td>CRM/Sales</td>
+<td>OAuth2</td><td>Paid/admin approval</td><td>REST · Broad</td>
+<td>Official</td><td><span class="badge medium">Medium</span></td>
+<td>License + MCP permissions</td><td><a href="https://api.docs.dealcloud.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="Medium" data-access="Paid/admin approval">
+<td>11</td><td><b>Zendesk</b></td><td>Support/Helpdesk</td>
+<td>OAuth2; API token</td><td>Paid/admin approval</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Verified user/customer context</td><td><a href="https://developer.zendesk.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve with restrictions">
+<td>12</td><td><b>Intercom</b></td><td>Support/Helpdesk</td>
+<td>OAuth2; access token</td><td>Self-serve with restrictions</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Public app OAuth vs private workspace token</td><td><a href="https://developers.intercom.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve trial">
+<td>13</td><td><b>Freshdesk</b></td><td>Support/Helpdesk</td>
+<td>API key; OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Account/app setup</td><td><a href="https://developers.freshdesk.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve trial">
+<td>14</td><td><b>Front</b></td><td>Support/Helpdesk</td>
+<td>API token; OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Plan/app configuration</td><td><a href="https://dev.frontapp.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve">
+<td>15</td><td><b>Pylon</b></td><td>Support/Helpdesk</td>
+<td>Bearer token</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Dashboard token</td><td><a href="https://docs.usepylon.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve trial">
+<td>16</td><td><b>LiveAgent</b></td><td>Support/Helpdesk</td>
+<td>API token</td><td>Self-serve trial</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Account access</td><td><a href="https://www.liveagent.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve">
+<td>17</td><td><b>Plain</b></td><td>Support/Helpdesk</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>GraphQL · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Workspace credentials</td><td><a href="https://plain.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve trial">
+<td>18</td><td><b>Help Scout</b></td><td>Support/Helpdesk</td>
+<td>OAuth2; API key</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>App registration</td><td><a href="https://developer.helpscout.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="High" data-access="Self-serve trial">
+<td>19</td><td><b>Gorgias</b></td><td>Support/Helpdesk</td>
+<td>API key; OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Account/app access</td><td><a href="https://developers.gorgias.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Support/Helpdesk" data-build="Medium" data-access="Paid/admin approval">
+<td>20</td><td><b>Gladly</b></td><td>Support/Helpdesk</td>
+<td>OAuth2; API token</td><td>Paid/admin approval</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Enterprise/customer access</td><td><a href="https://developer.gladly.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>21</td><td><b>Slack</b></td><td>Communications/Messaging</td>
+<td>OAuth2; token</td><td>Self-serve</td><td>REST + Events · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Scopes/app installation</td><td><a href="https://api.slack.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve trial">
+<td>22</td><td><b>Twilio</b></td><td>Communications/Messaging</td>
+<td>API key/secret; OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Account credentials and product-specific APIs</td><td><a href="https://www.twilio.com/docs/usage/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>23</td><td><b>Zoho Cliq</b></td><td>Communications/Messaging</td>
+<td>OAuth2; token</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Scopes</td><td><a href="https://www.zoho.com/cliq/help/restapi" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>24</td><td><b>Lark</b></td><td>Communications/Messaging</td>
+<td>OAuth2; app credentials</td><td>Self-serve</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Tenant/app approval</td><td><a href="https://open.larksuite.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="Medium" data-access="Self-serve">
+<td>25</td><td><b>Pumble</b></td><td>Communications/Messaging</td>
+<td>OAuth2; token</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Developer access/documentation depth</td><td><a href="https://pumble.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>26</td><td><b>Discord</b></td><td>Communications/Messaging</td>
+<td>OAuth2; bot token</td><td>Self-serve</td><td>REST + Gateway · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Bot/app scopes</td><td><a href="https://discord.com/developers/docs" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>27</td><td><b>Telegram</b></td><td>Communications/Messaging</td>
+<td>Bot token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Bot token</td><td><a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="Medium" data-access="Admin approval/business verification">
+<td>28</td><td><b>WhatsApp Business</b></td><td>Communications/Messaging</td>
+<td>OAuth2; access token</td><td>Admin approval/business verification</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Business portfolio/app review</td><td><a href="https://developers.facebook.com/docs/whatsapp" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve trial">
+<td>29</td><td><b>Aircall</b></td><td>Communications/Messaging</td>
+<td>OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>App authorization</td><td><a href="https://developer.aircall.io" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Communications/Messaging" data-build="High" data-access="Self-serve">
+<td>30</td><td><b>Vonage</b></td><td>Communications/Messaging</td>
+<td>API key/secret; OAuth2/JWT</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Product-specific credentials</td><td><a href="https://developer.vonage.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Self-serve with restrictions">
+<td>31</td><td><b>Google Ads</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2; developer token</td><td>Self-serve with restrictions</td><td>REST; gRPC · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Developer token + OAuth</td><td><a href="https://developers.google.com/google-ads" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Self-serve with restrictions">
+<td>32</td><td><b>Meta Ads</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2; access token</td><td>Self-serve with restrictions</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>App review/permissions</td><td><a href="https://developers.facebook.com/docs/marketing-apis" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Admin approval/app review">
+<td>33</td><td><b>LinkedIn Ads</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2</td><td>Admin approval/app review</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Marketing API permissions/review</td><td><a href="https://learn.microsoft.com/linkedin/marketing" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="High" data-access="Self-serve">
+<td>34</td><td><b>GoHighLevel</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2; API key</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Marketplace/app scopes</td><td><a href="https://highlevel.stoplight.io" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="High" data-access="Self-serve">
+<td>35</td><td><b>Mailchimp</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2; API key</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>API key/OAuth</td><td><a href="https://mailchimp.com/developer" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="High" data-access="Self-serve">
+<td>36</td><td><b>Klaviyo</b></td><td>Marketing/Ads/Email/Social</td>
+<td>API key/private key; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Scopes</td><td><a href="https://developers.klaviyo.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Self-serve">
+<td>37</td><td><b>systeme.io</b></td><td>Marketing/Ads/Email/Social</td>
+<td>API key</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>API access varies by plan</td><td><a href="https://systeme.io" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Self-serve with restrictions">
+<td>38</td><td><b>Pinterest</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2</td><td>Self-serve with restrictions</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>App access/scopes</td><td><a href="https://developers.pinterest.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="Medium" data-access="Self-serve with restrictions">
+<td>39</td><td><b>Threads</b></td><td>Marketing/Ads/Email/Social</td>
+<td>OAuth2</td><td>Self-serve with restrictions</td><td>REST · Moderate</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Meta app/scopes</td><td><a href="https://developers.facebook.com/docs/threads" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Marketing/Ads/Email/Social" data-build="High" data-access="Self-serve trial">
+<td>40</td><td><b>SendGrid</b></td><td>Marketing/Ads/Email/Social</td>
+<td>API key; OAuth2</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>API key</td><td><a href="https://docs.sendgrid.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve">
+<td>41</td><td><b>Shopify</b></td><td>Ecommerce</td>
+<td>OAuth2; access token</td><td>Self-serve</td><td>GraphQL + REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>App scopes; REST legacy for new public apps</td><td><a href="https://shopify.dev" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve">
+<td>42</td><td><b>WooCommerce</b></td><td>Ecommerce</td>
+<td>API key/secret; OAuth1 for legacy flows</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Store credentials</td><td><a href="https://woocommerce.com/document/woocommerce-rest-api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve">
+<td>43</td><td><b>BigCommerce</b></td><td>Ecommerce</td>
+<td>OAuth2; access token</td><td>Self-serve</td><td>REST + GraphQL · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Store/app scopes</td><td><a href="https://developer.bigcommerce.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="Medium" data-access="Paid/admin approval">
+<td>44</td><td><b>Salesforce Commerce Cloud</b></td><td>Ecommerce</td>
+<td>OAuth2</td><td>Paid/admin approval</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Enterprise instance/access</td><td><a href="https://developer.salesforce.com/docs/commerce" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve/paid">
+<td>45</td><td><b>Magento/Adobe Commerce</b></td><td>Ecommerce</td>
+<td>OAuth2; integration token</td><td>Self-serve/paid</td><td>REST + GraphQL · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Store/admin integration</td><td><a href="https://developer.adobe.com/commerce" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="Medium" data-access="Self-serve">
+<td>46</td><td><b>Squarespace</b></td><td>Ecommerce</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>API availability by product</td><td><a href="https://developers.squarespace.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve">
+<td>47</td><td><b>Ecwid</b></td><td>Ecommerce</td>
+<td>OAuth2; token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>App registration</td><td><a href="https://api-docs.ecwid.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="High" data-access="Self-serve">
+<td>48</td><td><b>Gumroad</b></td><td>Ecommerce</td>
+<td>OAuth2; access token</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>App registration</td><td><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="Medium" data-access="Admin approval/partner-like">
+<td>49</td><td><b>Amazon SP-API</b></td><td>Ecommerce</td>
+<td>OAuth2/LWA; AWS/IAM signing</td><td>Admin approval/partner-like</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Seller authorization + roles + signing</td><td><a href="https://developer-docs.amazon.com/sp-api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Ecommerce" data-build="Low" data-access="Paid/admin approval">
+<td>50</td><td><b>fanbasis</b></td><td>Ecommerce</td>
+<td>API key; OAuth2</td><td>Paid/admin approval</td><td>REST · Narrow</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Limited public developer surface</td><td><a href="https://fanbasis.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="High" data-access="Self-serve paid/trial">
+<td>51</td><td><b>DataForSEO</b></td><td>Data/SEO/Scraping</td>
+<td>API login/password; token</td><td>Self-serve paid/trial</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Account credits</td><td><a href="https://docs.dataforseo.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Medium" data-access="Paid">
+<td>52</td><td><b>SE Ranking</b></td><td>Data/SEO/Scraping</td>
+<td>API key</td><td>Paid</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>API access/plan</td><td><a href="https://seranking.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Medium" data-access="Paid">
+<td>53</td><td><b>Ahrefs</b></td><td>Data/SEO/Scraping</td>
+<td>API token</td><td>Paid</td><td>REST · Broad</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>API plan/access</td><td><a href="https://ahrefs.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="High" data-access="Self-serve paid/trial">
+<td>54</td><td><b>MrScraper</b></td><td>Data/SEO/Scraping</td>
+<td>API key</td><td>Self-serve paid/trial</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge high">High</span></td>
+<td>Credits/plan</td><td><a href="https://docs.mrscraper.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="High" data-access="Self-serve">
+<td>55</td><td><b>Apify</b></td><td>Data/SEO/Scraping</td>
+<td>API token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Token</td><td><a href="https://docs.apify.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="High" data-access="Self-serve">
+<td>56</td><td><b>Firecrawl</b></td><td>Data/SEO/Scraping</td>
+<td>API key</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>API key/plan limits</td><td><a href="https://docs.firecrawl.dev" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Medium" data-access="Self-serve paid">
+<td>57</td><td><b>Bright Data</b></td><td>Data/SEO/Scraping</td>
+<td>API key/zone credentials</td><td>Self-serve paid</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Paid usage/zone setup</td><td><a href="https://brightdata.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Medium" data-access="Self-serve">
+<td>58</td><td><b>Sherlock</b></td><td>Data/SEO/Scraping</td>
+<td>CLI/local</td><td>Self-serve</td><td>None · Narrow</td>
+<td>None</td><td><span class="badge medium">Medium</span></td>
+<td>CLI rather than hosted API</td><td><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Low" data-access="Contact sales">
+<td>59</td><td><b>Waterfall.io</b></td><td>Data/SEO/Scraping</td>
+<td>API key/enterprise credentials</td><td>Contact sales</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Enterprise access</td><td><a href="https://waterfall.io" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Data/SEO/Scraping" data-build="Medium" data-access="Paid/admin approval">
+<td>60</td><td><b>Clay</b></td><td>Data/SEO/Scraping</td>
+<td>API key; OAuth2</td><td>Paid/admin approval</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Workspace/plan access</td><td><a href="https://clay.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>61</td><td><b>GitHub</b></td><td>Developer/Infra/Data</td>
+<td>PAT; OAuth2; GitHub App</td><td>Self-serve</td><td>REST + GraphQL · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Token/app permissions</td><td><a href="https://docs.github.com/rest" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>62</td><td><b>Vercel</b></td><td>Developer/Infra/Data</td>
+<td>Bearer token; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Team/project scopes</td><td><a href="https://vercel.com/docs/rest-api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>63</td><td><b>Netlify</b></td><td>Developer/Infra/Data</td>
+<td>Personal access token; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Token</td><td><a href="https://docs.netlify.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>64</td><td><b>Cloudflare</b></td><td>Developer/Infra/Data</td>
+<td>API token; API key</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Token scopes</td><td><a href="https://developers.cloudflare.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>65</td><td><b>Supabase</b></td><td>Developer/Infra/Data</td>
+<td>API key; JWT; OAuth2 for integrations</td><td>Self-serve</td><td>REST + GraphQL · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Project/service credentials</td><td><a href="https://supabase.com/docs" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>66</td><td><b>Neo4j</b></td><td>Developer/Infra/Data</td>
+<td>Bearer token; Basic depending on product</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Deployment/auth context</td><td><a href="https://neo4j.com/docs/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="Medium" data-access="Paid/admin approval">
+<td>67</td><td><b>Snowflake</b></td><td>Developer/Infra/Data</td>
+<td>Key pair; OAuth2; password</td><td>Paid/admin approval</td><td>SQL/REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Account/role/security policy</td><td><a href="https://docs.snowflake.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>68</td><td><b>MongoDB Atlas</b></td><td>Developer/Infra/Data</td>
+<td>API key/secret; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Project/org permissions</td><td><a href="https://mongodb.com/docs/atlas/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve trial">
+<td>69</td><td><b>Datadog</b></td><td>Developer/Infra/Data</td>
+<td>API key + app key</td><td>Self-serve trial</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>API/app keys</td><td><a href="https://docs.datadoghq.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Developer/Infra/Data" data-build="High" data-access="Self-serve">
+<td>70</td><td><b>Sentry</b></td><td>Developer/Infra/Data</td>
+<td>Auth token; API key; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Organization/project scopes</td><td><a href="https://docs.sentry.io/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>71</td><td><b>Notion</b></td><td>Productivity/Project Mgmt</td>
+<td>OAuth2; integration token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Integration capabilities/scopes</td><td><a href="https://developers.notion.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>72</td><td><b>Airtable</b></td><td>Productivity/Project Mgmt</td>
+<td>PAT; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Base/workspace scopes</td><td><a href="https://airtable.com/developers" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>73</td><td><b>Linear</b></td><td>Productivity/Project Mgmt</td>
+<td>API key; OAuth2</td><td>Self-serve</td><td>GraphQL · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Workspace scopes</td><td><a href="https://developers.linear.app" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve with restrictions">
+<td>74</td><td><b>Jira</b></td><td>Productivity/Project Mgmt</td>
+<td>OAuth2; API token; basic auth depending cloud context</td><td>Self-serve with restrictions</td><td>REST + GraphQL-adjacent APIs · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Atlassian app/tenant authorization</td><td><a href="https://developer.atlassian.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>75</td><td><b>Asana</b></td><td>Productivity/Project Mgmt</td>
+<td>OAuth2; PAT</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>OAuth scopes</td><td><a href="https://developers.asana.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>76</td><td><b>Monday.com</b></td><td>Productivity/Project Mgmt</td>
+<td>API token; OAuth2</td><td>Self-serve</td><td>GraphQL · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Workspace scopes</td><td><a href="https://developer.monday.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>77</td><td><b>ClickUp</b></td><td>Productivity/Project Mgmt</td>
+<td>API token; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Workspace authorization</td><td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>78</td><td><b>Coda</b></td><td>Productivity/Project Mgmt</td>
+<td>API token; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Doc scopes</td><td><a href="https://coda.io/developers" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>79</td><td><b>Smartsheet</b></td><td>Productivity/Project Mgmt</td>
+<td>API token; OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Token</td><td><a href="https://smartsheet.com/developers" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Productivity/Project Mgmt" data-build="High" data-access="Self-serve">
+<td>80</td><td><b>Harvest</b></td><td>Productivity/Project Mgmt</td>
+<td>OAuth2; personal access token</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Account/app authorization</td><td><a href="https://help.getharvest.com/api-v2" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="High" data-access="Self-serve">
+<td>81</td><td><b>Stripe</b></td><td>Finance/Fintech</td>
+<td>API key; OAuth2; restricted keys</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Official/third-party MCP ecosystem</td><td><span class="badge high">High</span></td>
+<td>Connected account/OAuth for platform use</td><td><a href="https://docs.stripe.com/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Medium" data-access="Self-serve sandbox; production approval">
+<td>82</td><td><b>Plaid</b></td><td>Finance/Fintech</td>
+<td>client_id + secret; OAuth-like Link flows</td><td>Self-serve sandbox; production approval</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Production access/review</td><td><a href="https://plaid.com/docs/api" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="High" data-access="Self-serve with restrictions">
+<td>83</td><td><b>Binance</b></td><td>Finance/Fintech</td>
+<td>API key + secret</td><td>Self-serve with restrictions</td><td>REST + WebSocket · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Account/API permissions</td><td><a href="https://developers.binance.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Low" data-access="Contact sales/admin">
+<td>84</td><td><b>Paygent Connect</b></td><td>Finance/Fintech</td>
+<td>Gateway/API credentials</td><td>Contact sales/admin</td><td>REST · Narrow</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Limited public docs/access</td><td><a href="https://paygent.global" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Low" data-access="Contact sales/admin">
+<td>85</td><td><b>iPayX</b></td><td>Finance/Fintech</td>
+<td>API key/token</td><td>Contact sales/admin</td><td>REST · Moderate</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Access/product maturity</td><td><a href="https://ipayx.ai/docs" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="High" data-access="Self-serve">
+<td>86</td><td><b>QuickBooks</b></td><td>Finance/Fintech</td>
+<td>OAuth2</td><td>Self-serve</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>App authorization</td><td><a href="https://developer.intuit.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="High" data-access="Self-serve with restrictions">
+<td>87</td><td><b>Xero</b></td><td>Finance/Fintech</td>
+<td>OAuth2; client credentials for machine-to-machine contexts</td><td>Self-serve with restrictions</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>App/scopes/tenant connection</td><td><a href="https://developer.xero.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Medium" data-access="Admin approval">
+<td>88</td><td><b>Brex</b></td><td>Finance/Fintech</td>
+<td>OAuth2; API credentials</td><td>Admin approval</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Customer/developer access</td><td><a href="https://developer.brex.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Medium" data-access="Admin approval">
+<td>89</td><td><b>Ramp</b></td><td>Finance/Fintech</td>
+<td>OAuth2; API credentials</td><td>Admin approval</td><td>REST · Broad</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Customer/admin access</td><td><a href="https://docs.ramp.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="Finance/Fintech" data-build="Low" data-access="Contact sales">
+<td>90</td><td><b>PitchBook</b></td><td>Finance/Fintech</td>
+<td>Enterprise API credentials</td><td>Contact sales</td><td>REST/enterprise API · Broad</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Commercial API access</td><td><a href="https://pitchbook.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Low" data-access="Enterprise/admin">
+<td>91</td><td><b>NotebookLM</b></td><td>AI/Research/Media</td>
+<td>Google identity/enterprise access</td><td>Enterprise/admin</td><td>Limited/enterprise API · Narrow</td>
+<td>None found</td><td><span class="badge low">Low</span></td>
+<td>Public API surface limited; enterprise access</td><td><a href="https://cloud.google.com/gemini" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Medium" data-access="Admin/partner access">
+<td>92</td><td><b>Otter AI</b></td><td>AI/Research/Media</td>
+<td>OAuth/API credentials</td><td>Admin/partner access</td><td>REST/limited · Moderate</td>
+<td>Official/third-party MCP</td><td><span class="badge medium">Medium</span></td>
+<td>MCP/API access</td><td><a href="https://help.otter.ai" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Medium" data-access="Admin/partner access">
+<td>93</td><td><b>Fathom</b></td><td>AI/Research/Media</td>
+<td>OAuth2/API access</td><td>Admin/partner access</td><td>REST/limited · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Developer access</td><td><a href="https://fathom.video" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Medium" data-access="Partner/request access">
+<td>94</td><td><b>Consensus</b></td><td>AI/Research/Media</td>
+<td>OAuth2/API access</td><td>Partner/request access</td><td>REST/limited · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>API availability/access</td><td><a href="https://consensus.app" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="High" data-access="Self-serve">
+<td>95</td><td><b>Reducto</b></td><td>AI/Research/Media</td>
+<td>API key</td><td>Self-serve</td><td>REST · Moderate</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>API key</td><td><a href="https://reducto.ai" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="High" data-access="Self-serve/enterprise">
+<td>96</td><td><b>Devin</b></td><td>AI/Research/Media</td>
+<td>API key/OAuth</td><td>Self-serve/enterprise</td><td>REST/agent/MCP · Moderate</td>
+<td>Official/third-party MCP</td><td><span class="badge high">High</span></td>
+<td>Plan/enterprise controls</td><td><a href="https://docs.devin.ai" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Medium" data-access="Self-serve/paid">
+<td>97</td><td><b>higgsfield</b></td><td>AI/Research/Media</td>
+<td>API key/CLI credentials</td><td>Self-serve/paid</td><td>REST/CLI · Moderate</td>
+<td>None found</td><td><span class="badge medium">Medium</span></td>
+<td>Product/API maturity</td><td><a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="High" data-access="Self-serve">
+<td>98</td><td><b>Mermaid CLI</b></td><td>AI/Research/Media</td>
+<td>Local CLI</td><td>Self-serve</td><td>None · Narrow</td>
+<td>None</td><td><span class="badge high">High</span></td>
+<td>Not a hosted API; CLI is directly agent-callable</td><td><a href="https://github.com/mermaid-js/mermaid-cli" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="High" data-access="Self-serve paid">
+<td>99</td><td><b>YouTube Transcript</b></td><td>AI/Research/Media</td>
+<td>API key</td><td>Self-serve paid</td><td>REST · Narrow</td>
+<td>Third-party ecosystem</td><td><span class="badge high">High</span></td>
+<td>Provider dependency</td><td><a href="https://transcriptapi.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr><tr data-cat="AI/Research/Media" data-build="Medium" data-access="Admin/partner access">
+<td>100</td><td><b>Grain</b></td><td>AI/Research/Media</td>
+<td>OAuth2/API access</td><td>Admin/partner access</td><td>REST/limited · Moderate</td>
+<td>Third-party ecosystem</td><td><span class="badge medium">Medium</span></td>
+<td>Workspace/API access</td><td><a href="https://grain.com" target="_blank" rel="noreferrer">Evidence ↗</a></td></tr></tbody></table></div>
+</section>
+
+<section><h2>Methodology & limitations</h2><div class="panel"><p><b>Source priority:</b> official developer/API/auth/pricing documentation first; assignment seed URLs are retained as source anchors. <b>Buildability:</b> combines API availability/breadth with practical credential access and restrictions. <b>Evidence:</b> each row links to its official documentation anchor.</p><p><b>Important:</b> this page intentionally does not fabricate a first-pass/second-pass accuracy percentage. The independently audited sample is shown separately. Before submission, manually audit the remaining rows and then replace this note with measured first-pass and post-verification accuracy.</p></div></section>
+
+<footer>Prepared as a submission-ready case study. Replace repository/live-demo placeholders with your deployed URLs before sending.</footer>
+</div>
+<script>
+function filterRows(){
+ const q=document.getElementById('q').value.toLowerCase(), c=document.getElementById('cat').value, b=document.getElementById('build').value;
+ document.querySelectorAll('#rows tr').forEach(r=>{
+   const text=r.innerText.toLowerCase();
+   r.style.display=(!q||text.includes(q))&&(!c||r.dataset.cat===c)&&(!b||r.dataset.build===b)?'':'none';
+ });
+}
+</script>
+</body></html>

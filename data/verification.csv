@@ -1,0 +1,13 @@
+app,field,result,audit_note,source
+Salesforce,OAuth/API surface,Correct,Official docs confirm OAuth and Connect REST API; free Developer Edition exists for testing.,https://developer.salesforce.com/docs/platform/connect-rest-api/guide/quickstart.html
+Pipedrive,OAuth2,Correct,Official API reference documents OAuth2 authorization/token endpoints.,https://developers.pipedrive.com/docs/api/v1/Oauth
+Attio,Auth,Correct,Official docs document OAuth2 and workspace API keys.,https://docs.attio.com/rest-api/guides/authentication
+Podio,OAuth2,Correct,Official docs state Podio API uses OAuth2.,https://developers.podio.com/authentication
+Zoho CRM,OAuth2,Correct,Official docs describe authorization-code grant and org-specific grants.,https://www.zoho.com/crm/developer/docs/api/v8/auth-request.html
+Close,Auth + MCP,Correct,Official docs document API keys/OAuth2 and a remote MCP server.,https://developer.close.com/mcp
+Zendesk,Auth,Correct,Official docs document API token and OAuth token authentication.,https://developer.zendesk.com/api-reference/introduction/security-and-auth/
+Intercom,Auth,Correct,Official docs distinguish private access tokens and public-app OAuth.,https://developers.intercom.com/docs/build-an-integration/learn-more/authentication
+Shopify,API + auth,Correct,Official Admin GraphQL docs show broad resources and access-token/OAuth authentication.,https://shopify.dev/docs/api/admin-graphql/2026-01
+GitHub,API + auth,Correct,Official docs document broad REST API and token/app authentication.,https://docs.github.com/en/rest/authentication
+Plaid,Access + auth,Correct,Official docs state Dashboard API access and client_id/secret requirements.,https://plaid.com/docs/api/
+DealCloud,MCP gate,Correct,Official docs state Celeste license and permissions are prerequisites for MCP.,https://api.docs.dealcloud.com/mcp/getting-started
